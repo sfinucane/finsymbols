@@ -10,6 +10,7 @@ import pprint
 import csv
 import re
 
+_24_HOURS = 86400
 
 def get_symbol_list(symbol_data, exchange_name):
 
@@ -57,7 +58,7 @@ def is_cached(file_path):
     current_time = datetime.datetime.now()
     file_age = (current_time - file_time).total_seconds()
 
-    if file_age > 86400:
+    if file_age > _24_HOURS:
         return False
     else:
         return True

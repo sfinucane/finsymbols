@@ -1,3 +1,5 @@
+#!/usr/bin/env python
+# -*- coding: latin-1 -*-
 import pprint
 import sys
 from bs4 import BeautifulSoup

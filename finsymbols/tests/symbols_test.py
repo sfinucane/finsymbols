@@ -1,16 +1,39 @@
+#!/usr/bin/env python
+# -*- coding: latin-1 -*-
+import os, sys
+import glob
 from unittest import TestCase, main
 from six import string_types
-import sys
-import os
 
-from finsymbols import symbols
+def last_index(iterObj, value):
+    if not iterObj:
+        return None
+    # find the first occurrence, if any
+    pivot = iterObj.index(value)
+    if not pivot:
+        return None
+    sub_iterObj = iterObj[pivot:]
+    if len(sub_iterObj) <= 1:
+        return pivot
+    next_occurrence = last_index(sub_iterObj, value)
+    return next_occurrence if next_occurrence else pivot
+
+
+try:
+    from finsymbols import symbols
+except ImportError:
+    # last_finsymbols = last_index(os.getcwd().split(os.path.sep), 'finsymbols')
+    # print last_finsymbols
+    # print pkg_path
+    sys.path.append("")
+    from finsymbols import symbols
 
 
 class TestSizeOfList(TestCase):
 
     def test_sp500_size(self):
         sp500 = symbols.get_sp500_symbols()
-        assert len(sp500) == 504, 'len gathered data: {}.\
+        assert len(sp500) == 505, 'len gathered data: {}.\
          Expected len: 504'.format(len(sp500))
 
     def test_amex_not_null(self):

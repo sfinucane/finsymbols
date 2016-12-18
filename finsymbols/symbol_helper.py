@@ -1,3 +1,5 @@
+#!/usr/bin/env python
+# -*- coding: latin-1 -*-
 try:
     import urllib2 as urllib
 except ImportError:  # python3
